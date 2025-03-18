@@ -3,6 +3,10 @@
         {
             "source": "/(.*)",
             "destination": "/frontend/$1"
+        },
+        {
+            "source": "/",
+            "destination": "/frontend/tweet-uploader.html"
         }
     ],
     "cleanUrls": true,
