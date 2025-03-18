@@ -1,6 +1,10 @@
 {
     "rewrites": [
         {
+            "source": "/callback.html",
+            "destination": "/frontend/callback.html"
+        },
+        {
             "source": "/(.*)",
             "destination": "/frontend/$1"
         },
@@ -8,9 +12,7 @@
             "source": "/",
             "destination": "/frontend/index.html"
         }
-
     ],
     "cleanUrls": true,
     "trailingSlash": false
-	
 }
