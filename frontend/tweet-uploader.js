@@ -101,16 +101,16 @@ if (typeof ethers === "undefined") {
     }
 
     if (connectDiscordButton) {
-        connectDiscordButton.addEventListener("click", () => {
-            const clientId = "1351502580118720522"; // Discord Client ID
-            const redirectUri = "https://tweet-uploader.vercel.app/callback.html"; // redirect URI
-            const oauthUrl = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=identify`;
-            const popup = window.open(oauthUrl, "DiscordAuth", "width=600,height=700");
-            if (!popup) {
-                status.textContent = "Error: Popup blocked. Please allow popups for this site.";
-            }
-        });
-    }
+    connectDiscordButton.addEventListener("click", () => {
+        const clientId = "1351502580118720522"; // Discord Client ID
+        const redirectUri = "https://tweet-uploader.vercel.app/callback.html"; 
+        const oauthUrl = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=identify`;
+        const popup = window.open(oauthUrl, "DiscordAuth", "width=600,height=700");
+        if (!popup) {
+            status.textContent = "Error: Popup blocked. Please allow popups for this site.";
+        }
+    });
+}
 
     window.addEventListener('message', (event) => {
         if (event.data.discordUsername) {
