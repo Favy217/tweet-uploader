@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Callback</title>
+</head>
+<body>
+    <div id="status"></div>
+    <script>
+        const statusDiv = document.getElementById('status');
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+
+        if (code) {
+            fetch('https://discord.com/api/oauth2/token', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({
+                    client_id: '1351502580118720522', // Client ID
+                    client_secret: 'n7MDec8gAb7_WLBsfjgMan_uHWCltSn5', // Client Secret
+                    grant_type: 'authorization_code',
+                    code: code,
+                    redirect_uri: 'https://tweet-uploader.vercel.app/callback.html' // redirect URI
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    throw new Error(data.error_description || 'Failed to get access token');
+                }
+                const accessToken = data.access_token;
+                return fetch('https://discord.com/api/users/@me', {
+                    headers: { 'Authorization': `Bearer ${accessToken}` }
+                });
+            })
+            .then(response => response.json())
+            .then(user => {
+                if (user.username && user.discriminator) {
+                    const discordUsername = `${user.username}#${user.discriminator}`;
+                    if (window.opener) {
+                        window.opener.postMessage({ discordUsername: discordUsername }, '*');
+                        window.close();
+                    } else {
+                        statusDiv.textContent = "Error: Parent window not found. Please close this window and try again.";
+                    }
+                } else {
+                    throw new Error('Failed to retrieve Discord username');
+                }
+            })
+            .catch(error => {
+                console.error("OAuth error:", error);
+                statusDiv.textContent = `Error: ${error.message}`;
+            });
+        } else {
+            statusDiv.textContent = 'Error: No authorization code received';
+        }
+    </script>
+</body>
+</html>
