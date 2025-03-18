@@ -103,7 +103,7 @@ if (typeof ethers === "undefined") {
     if (connectDiscordButton) {
     connectDiscordButton.addEventListener("click", () => {
         const clientId = "1351502580118720522"; // Discord Client ID
-        const redirectUri = "https://tweet-uploader.vercel.app/callback"; 
+        const redirectUri = "https://tweet-uploader.vercel.app/callback/index.html"; 
         const oauthUrl = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=identify`;
         const popup = window.open(oauthUrl, "DiscordAuth", "width=600,height=700");
         if (!popup) {
