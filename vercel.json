@@ -6,16 +6,15 @@
         },
         {
             "source": "/",
-            "destination": "/frontend/tweet-uploader.html"
+            "destination": "/frontend/index.html"
         }
+	{
+            "source": "/",
+            "destination": "/frontend/callback.html"
+        }
+
     ],
     "cleanUrls": true,
     "trailingSlash": false
 	
-	"rewrites": [
-    {
-      "source": "/callback",
-      "destination": "/callback/index.html"
-    }
-  ]
 }
