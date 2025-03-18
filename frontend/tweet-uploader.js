@@ -56,23 +56,23 @@ if (typeof ethers === "undefined") {
     }
 
     async function updateRecords() {
-        if (!connected) return;
-        const signer = provider.getSigner();
-        const userAddress = await signer.getAddress();
-        const records = await contract.getUserRecords(userAddress);
-        recordsDiv.innerHTML = "";
-        connectedDiscordUsers = [...new Set(records.map(record => record.discordUsername).filter(username => username))]; // Update unique usernames
-        records.forEach(record => {
-            const recordDiv = document.createElement("div");
-            recordDiv.className = "tweet-record";
-            recordDiv.innerHTML = `
-                <p><a href="${record.tweetUrl}" target="_blank">${record.tweetUrl}</a></p>
-                <p>Timestamp: ${new Date(record.timestamp * 1000).toLocaleString()}</p>
-                <p>Uploaded by Discord: ${record.discordUsername || "N/A"}</p>
-            `;
-            recordsDiv.appendChild(recordDiv);
-        });
-    }
+    if (!connected) return;
+    const signer = provider.getSigner();
+    const userAddress = await signer.getAddress();
+    const records = await contract.getUserRecords(userAddress);
+    recordsDiv.innerHTML = "";
+    connectedDiscordUsers = [...new Set(records.map(record => record.discordUsername).filter(username => username))];
+    records.forEach(record => {
+        const recordDiv = document.createElement("div");
+        recordDiv.className = "record-card"; // Updated class name to match new design
+        recordDiv.innerHTML = `
+            <p><a href="${record.tweetUrl}" target="_blank">${record.tweetUrl}</a></p>
+            <p>Timestamp: ${new Date(record.timestamp * 1000).toLocaleString()}</p>
+            <p>Uploaded by Discord: ${record.discordUsername || "N/A"}</p>
+        `;
+        recordsDiv.appendChild(recordDiv);
+    });
+}
 
     if (connectWalletButton) {
         connectWalletButton.addEventListener("click", async () => {
