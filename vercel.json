@@ -2,11 +2,11 @@
     "rewrites": [
         {
             "source": "/(.*)",
-            "destination": "/$1"
+            "destination": "/frontend/$1"
         },
         {
             "source": "/",
-            "destination": "/tweet-uploader.html"
+            "destination": "/frontend/tweet-uploader.html"
         }
     ],
     "cleanUrls": true,
