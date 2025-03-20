@@ -104,7 +104,7 @@ if (typeof ethers === "undefined") {
     connectDiscordButton.addEventListener("click", () => {
         const clientId = "1351502580118720522"; // Discord Client ID
         const redirectUri = "https://tweet-uploader.vercel.app/callback.html"; 
-        const oauthUrl = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=identify`;
+        const oauthUrl = `https://discord.com/oauth2/authorize?client_id=1351502580118720522&response_type=code&redirect_uri=https%3A%2F%2Ftweet-uploader.vercel.app%2Fcallback.html&scope=identify`
         const popup = window.open(oauthUrl, "DiscordAuth", "width=600,height=700");
         if (!popup) {
             status.textContent = "Error: Popup blocked. Please allow popups for this site.";
