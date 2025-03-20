@@ -1,7 +1,7 @@
 {
     "rewrites": [
         {
-            "source": "/callback.html",
+            "source": "/frontend/callback.html",
             "destination": "/frontend/callback.html"
         },
         {
